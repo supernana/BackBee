@@ -77,7 +77,7 @@ class Twig extends AbstractRendererAdapter
         if ($application->isDebugMode() || (isset($config['debug']) && true === $config['debug'])) {
             $this->twig->enableDebug();
             $this->twig->addExtension(new \Twig_Extension_Debug());
-        } elseif ($application->isClientSAPI()) {
+        } elseif ( null !== $application && false === $application->isClientSAPI()) {
             $this->twig->enableAutoReload();
             $this->setTwigCache($application->getCacheDir().DIRECTORY_SEPARATOR.'twig');
         }
